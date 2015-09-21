@@ -93,3 +93,10 @@ if let theValueOfSt = st{ //an assignment of a constant(let) with another variab
 //print(st!.lowercaseString); //will throw runtime exception because st is nil
 print(st?.lowercaseString); //cannot fail, the computer will make sure st is not nil before accessing it. if nil, the printed value is "nil"
 
+
+//typealias
+typealias Flag = Bool;
+var myFlag:Flag = true;
+
+typealias Note = String;
+var myNote:Note = "bla bla";
