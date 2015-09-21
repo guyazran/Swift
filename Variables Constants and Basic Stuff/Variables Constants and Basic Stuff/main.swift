@@ -170,3 +170,34 @@ var myMaritalStatus = MaritalStatus.Married; //Swift can also understand enum ty
 
 var myMaritalStatus2:MaritalStatus;
 myMaritalStatus = .Married; //if the enum type is set on declaration, there is no need to write the type before assigning a value
+
+
+//arrays
+var myArray:[String]; //create a reference (pointer) to an array of Strings
+
+myArray = [String](); //assign it a new object that is an array of Strings
+
+myArray.append("Guy");
+myArray.append("Gal");
+myArray.append("Moran");
+
+var myArray2 = ["Guy", "Gal", "Moran"];
+
+for name in myArray{
+    print("name = \(name)");
+}
+print(myArray[1]);
+
+myArray.insert("Gil", atIndex: 0);
+myArray.removeAtIndex(1)
+
+for name in myArray{
+    print("name = \(name)");
+}
+
+//myArray.removeAll(keepCapacity: true) //"keepCapacity: true" this will keep the size of the array
+myArray[1] = "Elad";
+
+for i in 0 ..< myArray.count{
+    print("value at \(i) = \(myArray[i])");
+}
