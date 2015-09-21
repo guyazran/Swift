@@ -201,3 +201,20 @@ myArray[1] = "Elad";
 for i in 0 ..< myArray.count{
     print("value at \(i) = \(myArray[i])");
 }
+
+
+//loops (continued)
+
+for var i = 0; i <= 10; ++i{
+    print("i = \(i)");
+}
+
+var i = 0;
+while i <= 10{
+    print("i = \(i)");
+    i++;
+}
+
+//do while (same as java)
+
+//in loops, like in java we have "continue" and "break"
