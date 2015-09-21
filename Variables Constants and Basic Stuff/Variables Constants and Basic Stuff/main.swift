@@ -231,3 +231,28 @@ case 2...4:
 default: //in Swift a default case is mandatory
     print("i is something else");
 }
+
+
+//functions
+func myFunc(){ //a function that does not recieve parameters and does not return any values
+    print("in myFunc");
+}
+
+myFunc();
+
+func myFunc2() -> String{
+    print("in myFunc2");
+    return "some string";
+}
+
+print(myFunc2())
+
+func distance(x: Int, y: Int) -> Int{
+    var result = x - y;
+    if result < 0{
+        result *= -1;
+    }
+    return result;
+}
+
+print("the distance between 8 and 5 is \(distance(8,y:5))"); //from the second parameter onward you must write the name of the parameter in the function before the value
