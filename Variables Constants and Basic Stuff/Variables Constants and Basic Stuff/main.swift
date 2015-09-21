@@ -100,3 +100,12 @@ var myFlag:Flag = true;
 
 typealias Note = String;
 var myNote:Note = "bla bla";
+
+
+//scope
+let isTrue = true; //global variable: can be used in all scopes created in it's scope
+if(isTrue){
+    var myString = "This is a \(isTrue) statement"; //myString is in the "if"'s scope and cannot be used outside of it
+    print(myString);
+}
+//print(myString); //will not compile because myString is declared an an inner scope
