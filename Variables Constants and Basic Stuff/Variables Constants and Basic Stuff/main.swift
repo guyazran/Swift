@@ -218,3 +218,16 @@ while i <= 10{
 //do while (same as java)
 
 //in loops, like in java we have "continue" and "break"
+
+
+//conditions
+//if, else, else if (same as java)
+
+switch i{
+case 0:
+    print("i is zero"); //in Swift no case is needed
+case 2...4:
+    print("i is between two and four");
+default: //in Swift a default case is mandatory
+    print("i is something else");
+}
