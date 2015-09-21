@@ -143,3 +143,30 @@ for i in 1...10{ //includes 10
 for i in 1..<10{ //doesn't include 10
     print("i = \(i)");
 }
+
+
+//enums
+enum ComputerState{
+    case Inactive
+    case Active
+    case Hibernate
+    case Terminated
+}
+var myComputerState:ComputerState;
+myComputerState = ComputerState.Active;
+
+if myComputerState == ComputerState.Active{
+    print("your computer is active");
+}
+
+enum MaritalStatus{
+    case Married
+    case Divorced
+    case Widow
+    case Single
+}
+
+var myMaritalStatus = MaritalStatus.Married; //Swift can also understand enum types
+
+var myMaritalStatus2:MaritalStatus;
+myMaritalStatus = .Married; //if the enum type is set on declaration, there is no need to write the type before assigning a value
