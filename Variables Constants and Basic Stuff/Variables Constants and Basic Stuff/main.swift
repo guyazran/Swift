@@ -13,12 +13,12 @@ let s1:String = "Hello World";
 print(s1);
 
 
-let i:Int = -25;
+let i1:Int = -25;
 let f:Float = 3.14
 let d:Double = 99.99;
 let b:Bool = true;
 
-print("i = \(i) f = \(f) d = \(d) b = \(b)");
+print("i1 = \(i1) f = \(f) d = \(d) b = \(b)");
 var s2 = "hello";
 s2 += " ";
 s2 += "world";
@@ -31,8 +31,8 @@ you may also use comments to disable code
 */
 
 //numbers
-let i1:Int = 5;// type int
-var i2 = 7; // automatic Int
+let i2:Int = 5;// type int
+var i3 = 7; // automatic Int
 var myByte:Int8 = 127; //type byte from
 var myUnsignedByte:UInt8 = 255 //type byte only positive (from 0 to 255). all Int types can be unsigned
 var myShort:Int16 = 200; //type short
@@ -109,3 +109,37 @@ if(isTrue){
     print(myString);
 }
 //print(myString); //will not compile because myString is declared an an inner scope
+
+
+//math operators
+i3++;
+i3--;
+i3 *= 2;
+i3 /= 2;
+i3 = i2 % 5;
+i3 = 5;
+var x = Double(i2) / 2.0; //both variables must be of the same type. here i2 is casted to a double
+print("x = \(x)");
+
+//logical operators
+var y = 8.9;
+myFlag = x == y;
+myFlag = x != y;
+myFlag = x > y;
+
+let f1 = true, f2 = true;
+
+let f3 = !f1;
+let f4 = f1 && f2;
+
+//ternary if
+x = y>19 ? 8 : 10;
+
+//loops
+for i in 1...10{ //includes 10
+    print("i = \(i)");
+}
+
+for i in 1..<10{ //doesn't include 10
+    print("i = \(i)");
+}
