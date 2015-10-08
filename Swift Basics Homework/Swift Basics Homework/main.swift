@@ -19,7 +19,7 @@ func distance(x: Int, y: Int) -> Int{
         small = x;
     }
     var result:Int = 0;
-    for _ in small..<large{
+    while small + result < large{
         result++;
     }
     return result;
@@ -39,57 +39,101 @@ func product(x: Int, y: Int) -> Int{
         large = y;
         small = x;
     }
-    if small == 1{
-        return large;
-    }else{
-        return (large + product(large, y: distance(small, y: 1)));
+    
+    var result = 0;
+    for _ in 0 ..< small{
+        result += large
     }
+    return result;
 }
 
 
 print("the product of \(x) and \(y) is \(product(x, y: y))")
 
+/*
+use quotientB to also receive the remainder in the same function
 func quotient(x: Int, y: Int) -> Int{
     if y == 0{
         return -1;
     }
     var result = 0;
-    for var i = 0; y + product(i, y: y) <= x; ++i{
+    for var i = y; i <= x; i += y{
         result++;
     }
     return result;
 }
 
 print("the quotient of \(x) and \(y) is \(quotient(x, y: y))")
+*/
+
+func quotientB(x: Int, y: Int) -> (Int,Int){
+    if y == 0{
+        return (-1,-1);
+    }
+    var result = 0;
+    var largestProductOfY = 0;
+    for var i = y; i <= x; i += y{
+        result++;
+        largestProductOfY = i;
+    }
+    return (result, distance(x, y: largestProductOfY));
+}
+
+/*
+this function is less CPU minded because quotient and product both reach the largest product of y. therefor there is no need to run both of them.
+instead, we will bring the solution directly from quotient using Tupel.
 
 func remainder(x: Int, y: Int) -> Int{
     if y == 0{
         return -1;
     }
-    if x < y{
-        return x;
-    }
-    let quotientXY:Int = quotient(x, y: y);
-    let productOfQuotient:Int = product(y, y: quotientXY);
-    return distance(productOfQuotient, y:x);
+    
+    return distance(product(y, y: quotient(x, y: y)), y:x);
 }
 
 print("the remainder of \(x) and \(y) is \(remainder(x, y: y))");
+*/
 
-func power(x: Int, y: Int) -> Int{
+let (q, r) = quotientB(x, y: y);
+print("the quotient of \(x) and \(y) is \(q) and the remainder is \(r)");
+
+//with loop
+func powerA(x: Int, y: Int) -> Int{
     if x == 0{
+        if y == 0{
+            return -1;
+        }
         return 0
     }
-    if y == 0{
+    if y == 0 || x == 1{
         return 1;
     }
-    if y == 1{
-        return x;
+    
+    var result = x;
+    for _ in 1..<y{
+        result *= x;
     }
-    return x * power(x, y: y-1);
+    return result;
 }
 
-print("\(x) to the power of \(y) is \(power(x, y: y))");
+print("\(x) to the power of \(y) is \(powerA(x, y: y)) (powerA)");
+
+//without loop
+func powerB(x: Int, y: Int) -> Int{
+    if x == 0{
+        if y == 0{
+            return -1;
+        }
+        return 0
+    }
+    if y == 0 || x == 1{
+        return 1;
+    }
+    
+    return x * powerB(x, y: y-1);
+}
+
+print("\(x) to the power of \(y) is \(powerB(x, y: y)) (powerB)");
 
 func sqrt(x: Int) -> Int{
     var result:Int = 0;
@@ -103,9 +147,12 @@ print("the square root of \(x) is \(sqrt(x))");
 
 func sumOfDigits(var x: Int) -> Int{
     var result = 0;
-    while (x > 0){
-        result += x % 10;
-        x = x / 10;
+    var lastDigit:Int;
+    while (x != 0){
+        lastDigit = x % 10;
+        x /= 10;
+        
+        result += lastDigit;
     }
     return result;
 }
@@ -113,14 +160,15 @@ func sumOfDigits(var x: Int) -> Int{
 print("the sum of the digits of \(x) is \(sumOfDigits(x))");
 
 func largestDigit(var x: Int) -> Int{
-    var result = x % 10;
-    x = x / 10;
+    var result = 0;
+    var lastDigit:Int;
     while(x > 0){
-        let digit:Int = x % 10;
-        if digit > result{
-            result = digit;
-        }
+        lastDigit = x % 10;
         x /= 10;
+        
+        if lastDigit > result{
+            result = lastDigit;
+        }
     }
     return result;
 }
@@ -129,10 +177,12 @@ print("the largest digit in \(x) is \(largestDigit(x))");
 
 func reverseDigits(var x: Int) -> Int{
     var result = 0;
+    var lastDigit:Int;
     while x > 0{
-        result *= 10;
-        result += x % 10;
+        lastDigit = x % 10;
         x /= 10;
+        
+        result = result * 10 + lastDigit;
     }
     return result;
 }
@@ -163,19 +213,25 @@ func largestMember(numbers: [Int]) -> Int{
 
 print("the largest member in \(myArray) is \(largestMember(myArray))");
 
-func averageOfMembers(numbers: [Int]) -> Int{
-    return sumOfMembers(numbers) / numbers.count;
+func averageOfMembers(numbers: [Int]) -> Double{
+    return Double(sumOfMembers(numbers)) / Double(numbers.count);
 }
 
 print("the average of all members in \(myArray) is \(averageOfMembers(myArray))");
 
+/*
+this way the method receives a copy of the array
 func sortArray(var numbers: [Int]) -> [Int]{
     for var i = numbers.count - 1; i > 0; --i{
         for var j = 0; j < i; ++j{
             if (numbers[j] > numbers[j + 1]){
-                let temp = numbers[j];
-                numbers[j] = numbers[j + 1]
-                numbers[j + 1] = temp;
+                //let temp = numbers[j];
+                //numbers[j] = numbers[j + 1]
+                //numbers[j + 1] = temp;
+                
+                //this is also possible
+                numbers.insert(numbers[j + 1], atIndex: j);
+                numbers.removeAtIndex(j + 2);
             }
         }
     }
@@ -183,6 +239,30 @@ func sortArray(var numbers: [Int]) -> [Int]{
 }
 
 print("\(myArray) in ascending order is \(sortArray(myArray))");
+*/
+
+//this method receives a refference to the array and changes the original
+func sortArray(inout numbers: [Int]){
+    var lastPosition = numbers.count - 1;
+    var isSorted = false
+    while(!isSorted){
+        isSorted = true;
+        for (var i = 0; i < lastPosition; i++){
+            if(numbers[i] > numbers[i+1]){
+                let temp = numbers[i];
+                numbers[i] = numbers[i+1];
+                numbers[i+1] = temp;
+                isSorted = false;
+            }
+        }
+        lastPosition--;
+    }
+}
+
+var s = "\(myArray) in ascending order is ";
+sortArray(&myArray);
+s += "\(myArray)";
+print(s);
 
 func drawX(size:Int){
     for i in 0...size{
@@ -213,12 +293,3 @@ func drawRect(x: Int, y: Int, width: Int, height: Int){
 }
 
 drawRect(5, y: 5, width: 50, height: 10);
-
-
-
-
-
-
-
-
-
