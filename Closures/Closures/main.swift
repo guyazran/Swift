@@ -60,14 +60,31 @@ mySort("A", b: "B") { (s1: String, s2: String) -> Bool in
 }
 */
 
+/*
 //rearange a the calling of a function that receives a closure so that the closure looks like one of the parameters
 //this is automatic when the closure is not the final parameter
 mySort("A", b: "B", sortRule: { (s1: String, s2: String) -> Bool in
     return s1 < s2;
 });
+*/
 
 //mySort { (s1: String, s2: String) -> Bool in
 //    return s1 < s2;
 //}
 
-
+func sortArray(inout arr: [AnyObject], sortRule: (AnyObject, AnyObject) -> Bool){
+    var lastPosition = arr.count - 1;
+    var isSorted = false
+    while(!isSorted){
+        isSorted = true;
+        for (var i = 0; i < lastPosition; i++){
+            if(sortRule(arr[i + 1], arr[i])){
+                let temp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+                isSorted = false;
+            }
+        }
+        lastPosition--;
+    }
+}
