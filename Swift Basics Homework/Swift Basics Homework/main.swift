@@ -379,6 +379,8 @@ func drawRect2(inout canvas: [[Bool]], x: Int, y: Int, var width: Int, var heigh
         width = canvas[1].count - x;
     }
     
+    /*
+    //this loop will go through all places within the rectangle
     for i in y ..< y + height{
         for j in x ..< x + width{
             if(j == x || j == x + width - 1 || i == y || i == y + height - 1){
@@ -387,6 +389,18 @@ func drawRect2(inout canvas: [[Bool]], x: Int, y: Int, var width: Int, var heigh
         }
         
     }
+    */
+    
+    //this loop will only go through the sides of the rectangle
+    for i in x ..< x + width{
+        canvas[y][i] = true;
+        canvas[y + height - 1][i] = true;
+    }
+    for i in y ..< y + height{
+        canvas[i][x] = true;
+        canvas[i][x + width - 1] = true;
+    }
+    
 }
 
 func render(inout canvas: [[Bool]]){
