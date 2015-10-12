@@ -264,7 +264,10 @@ sortArray(&myArray);
 s += "\(myArray)";
 print(s);
 
-func drawX(size:Int){
+func drawX(var size:Int){
+    if size % 2 == 0{
+        size++;
+    }
     for i in 0...size{
         var line = "";
         for j in 0...size{
@@ -293,3 +296,66 @@ func drawRect(x: Int, y: Int, width: Int, height: Int){
 }
 
 drawRect(5, y: 5, width: 50, height: 10);
+
+
+func distanceFromPoint(x1: Int, y1: Int, x2: Int, y2: Int) -> Double{
+    let deltaX = x1 - x2;
+    let deltaY = y1 - y2;
+    let sumOfSquares = deltaX * deltaX + deltaY * deltaY;
+    return sqrt(Double(sumOfSquares));
+}
+
+//my Solution
+func drawCircle(x: Int, y: Int, radius: Int){
+    let xOfRect = x - radius;
+    let yOfRect = y - radius;
+    let sideOfRect = radius * 2;
+    
+    for var i = 0; i < yOfRect; ++i{
+        print("");
+    }
+    for var i = 0; i < sideOfRect + 1; ++i{
+        var line = "";
+        for var j = 0; j < xOfRect; ++j{
+            line += " ";
+        }
+        for var j = 0; j < sideOfRect + 1; ++j{
+            let distanceFromOrigin = distanceFromPoint(x, y1: y, x2: j + xOfRect, y2: i + yOfRect)
+            line += distanceFromOrigin > Double(Double(radius) - 0.5) && distanceFromOrigin < Double(Double(radius) + 0.5) ? "*" : " ";
+        }
+        print(line);
+    }
+}
+
+drawCircle(50, y: 30, radius: 10);
+
+//teacher solution
+func drawCircle2(a: Double, b:Double, radius: Double){
+    
+    func isPointOnClircle(x: Double, y: Double) -> Bool{
+        let deltaX = x - a;
+        let deltaY = y - b;
+        let distance = sqrt(deltaX * deltaX + deltaY + deltaY)
+        var difference = distance - radius;
+        if radius < 0{
+            difference *= -1;
+        }
+        return difference < 0.5;
+    }
+    
+    var line:String;
+    
+    for i in 0 ..< Int(b + radius + 1){
+        line = "";
+        for var j = 0; j < Int(a + radius + 1); ++j{
+            line += isPointOnClircle(Double(j), y: Double(i)) ? "*" : " ";
+        }
+        print(line);
+    }
+}
+
+drawCircle2(30, b: 50, radius: 10)
+
+
+
+
