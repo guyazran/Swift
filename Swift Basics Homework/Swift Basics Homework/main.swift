@@ -330,32 +330,30 @@ func drawCircle(x: Int, y: Int, radius: Int){
 drawCircle(50, y: 30, radius: 10);
 
 //teacher solution
-func drawCircle2(a: Double, b:Double, radius: Double){
+func drawCircle2(a: Double, b: Double, radius: Double){
     
-    func isPointOnClircle(x: Double, y: Double) -> Bool{
+    func isPointOnCircle(x: Double, y: Double) -> Bool{
         let deltaX = x - a;
         let deltaY = y - b;
-        let distance = sqrt(deltaX * deltaX + deltaY + deltaY)
+        let distance = sqrt(deltaX * deltaX + deltaY * deltaY);
         var difference = distance - radius;
-        if radius < 0{
+        if difference < 0{
             difference *= -1;
         }
         return difference < 0.5;
+        
     }
     
     var line:String;
     
     for i in 0 ..< Int(b + radius + 1){
         line = "";
-        for var j = 0; j < Int(a + radius + 1); ++j{
-            line += isPointOnClircle(Double(j), y: Double(i)) ? "*" : " ";
+        for j in 0 ..< Int(a + radius + 1){
+            line += isPointOnCircle(Double(j), y: Double(i)) ? "*" : " ";
         }
         print(line);
     }
 }
 
 drawCircle2(30, b: 50, radius: 10)
-
-
-
 
