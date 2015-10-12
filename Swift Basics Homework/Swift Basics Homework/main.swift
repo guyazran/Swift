@@ -357,3 +357,48 @@ func drawCircle2(a: Double, b: Double, radius: Double){
 
 drawCircle2(30, b: 50, radius: 10)
 
+var canvas:[[Bool]] = [[Bool]]();
+for i in 0..<20{
+    var line = [Bool]();
+    for j in 0..<100{
+        line.append(false);
+    }
+    canvas.append(line);
+}
+
+
+func drawRect2(inout canvas: [[Bool]], x: Int, y: Int, var width: Int, var height: Int){
+    if y > canvas.count || x > canvas[1].count{
+        return;
+    }
+    
+    if y + height > canvas.count{
+        height = canvas.count - y;
+    }
+    if x + width > canvas[1].count{
+        width = canvas[1].count - x;
+    }
+    
+    for i in y ..< y + height{
+        for j in x ..< x + width{
+            if(j == x || j == x + width - 1 || i == y || i == y + height - 1){
+                canvas[i][j] = true;
+            }
+        }
+        
+    }
+}
+
+func render(inout canvas: [[Bool]]){
+    for i in 0..<canvas.count{
+        var line = ""
+        for j in 0..<canvas[1].count{
+            line += canvas[i][j] ? "*" : " ";
+        }
+        print(line);
+    }
+}
+
+drawRect2(&canvas, x: 20, y: 8, width: 30, height: 10);
+drawRect2(&canvas, x: 10, y: 3, width: 30, height: 10);
+render(&canvas);
