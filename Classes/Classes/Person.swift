@@ -55,7 +55,7 @@ class Person {
         return "Homo Sapiens";
     }
     
-    //this is
+    //this is a variable that belongs to the class and not to any one instance. it is created when the first instance of this class is created
     private static var counter:Int = 0;
     
     func description() -> String{
