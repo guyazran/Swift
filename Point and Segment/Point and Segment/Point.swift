@@ -28,9 +28,7 @@ class Point{
         get{
             return _y;
         }set{
-            if newValue < 0{
-                _y = 0;
-            } else{
+            if newValue >= 0{
                 _y = newValue;
             }
         }
@@ -73,6 +71,8 @@ class Point{
             return 0;
         }
         
+        /*
+        //my solution
         let selfDistanceFromOrigin = self.distanceFromOrigin();
         let pDistanceFromOrigin = p.distanceFromOrigin();
         
@@ -92,6 +92,41 @@ class Point{
         } else {
             return -1
         }
+        */
+        
+        //teacher solution
+        let distanceFromOriginDifference = self.distanceFromOrigin() - p.distanceFromOrigin();
+        
+        if distanceFromOriginDifference > 0{
+            return 1;
+        } else if distanceFromOriginDifference < 0{
+            return -1;
+        } else{ //equal
+            let angleDifference = self.angleWithOrigin() - p.angleWithOrigin();
+            if angleDifference > 0{
+                return 1;
+            } else if angleDifference < 0{
+                return -1;
+            } else { //equal
+                return 0;
+            }
+        }
+    }
+    
+    func angleWith(p: Point) -> Double{
+        if x == p.x && y == p.y{
+            return -1;
+        }
+        if _x == 0{
+            return M_PI/2
+        }
+        let deltaX = p.x - x;
+        let deltaY = p.y - y;
+        return atan2(deltaY, deltaX)
+    }
+    
+    func angleWithOrigin() -> Double{
+        return angleWith(Point());
     }
     
 }
