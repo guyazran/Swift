@@ -114,21 +114,25 @@ func printArrayOfPoints(pointArray: [AnyObject]){
 printArrayOfPoints(arrayOfPoints);
 
 var s:Segment = Segment();
-s.p1.x = 1;
-s.p1.y = 1;
-s.p2.x = 3;
-s.p2.y = 1;
+s.p1 = Point();
+s.p2 = Point();
+s.p1!.x = 1;
+s.p1!.y = 1;
+s.p2!.x = 3;
+s.p2!.y = 1;
 
 var s2:Segment = Segment();
-s2.p1.x = 2;
-s2.p1.y = 2;
-s2.p2.x = 3;
-s2.p2.y = 1;
+s2.p1 = Point();
+s2.p2 = Point();
+s2.p1!.x = 2;
+s2.p1!.y = 2;
+s2.p2!.x = 3;
+s2.p2!.y = 1;
 
 
 print(s.getSlope());
 
-print(s.length());
+print(s.length);
 
 print(s.getYIntercepct());
 
