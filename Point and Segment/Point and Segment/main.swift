@@ -8,17 +8,11 @@
 
 import Foundation
 
-let p: Point = Point();
-p.x = 2;
-p.y = 4;
+let p: Point = Point(x: 2, y: 4);
 
-let p1: Point = Point();
-p1.x = 3;
-p1.y = 5;
+let p1: Point = Point(x: 3, y: 5);
 
-let p2: Point = Point();
-p2.x = 2;
-p2.y = 4;
+let p2: Point = Point(x: 2, y: 4);
 
 print(p.description());
 
@@ -31,13 +25,9 @@ print(p.getSlopeWithOrigin());
 print(p.compare(p1));
 print(p.compare(p2));
 
-let p3: Point = Point();
-p3.x = 5;
-p3.y = 7;
+let p3: Point = Point(x: 5, y: 7);
 
-let p4: Point = Point();
-p4.x = 1;
-p4.y = 1;
+let p4: Point = Point(x: 1, y: 1);
 
 /*
 var pointArray:[Point] = [p, p2, p3, p4];
@@ -67,16 +57,10 @@ pointArray.sortInPlace { (p1: Point, p2: Point) -> Bool in
 printPointArray(pointArray);
 */
 
-var arrayOfPoints: [AnyObject] = [Point(), Point(), Point()];
+var arrayOfPoints: [AnyObject] = [Point(x: 18, y: 13), Point(x: 5, y: 7), Point(x: 3, y: 8)];
 var p5 = arrayOfPoints[0] as! Point; //Forced Casting - casts to a certain type without question
 var p6 = arrayOfPoints[1] as! Point;
 var p7 = arrayOfPoints[2] as! Point;
-p5.x = 18;
-p5.y = 30;
-p6.x = 5;
-p6.y = 7;
-p7.x = 3;
-p7.y = 8;
 
 func sortArray(inout items: [AnyObject], comparator: (AnyObject, AnyObject) -> Bool){
     var lastPosition = items.count - 1;
@@ -113,22 +97,9 @@ func printArrayOfPoints(pointArray: [AnyObject]){
 
 printArrayOfPoints(arrayOfPoints);
 
-var s:Segment = Segment();
-s.p1 = Point();
-s.p2 = Point();
-s.p1!.x = 1;
-s.p1!.y = 1;
-s.p2!.x = 3;
-s.p2!.y = 1;
+var s:Segment = Segment(p1: Point(x: 1, y: 1), p2: Point(x: 1, y: 3));
 
-var s2:Segment = Segment();
-s2.p1 = Point();
-s2.p2 = Point();
-s2.p1!.x = 2;
-s2.p1!.y = 2;
-s2.p2!.x = 3;
-s2.p2!.y = 1;
-
+var s2:Segment = Segment(p1: Point(x: 2, y: 2), p2: Point(x: 3, y: 1));
 
 print(s.getSlope());
 
@@ -137,4 +108,3 @@ print(s.length);
 print(s.getYIntercepct());
 
 print(s.getIntersectionWith(s2)!.description());
-

@@ -12,9 +12,23 @@ class Segment {
     private var _p1:Point?;
     private var _p2:Point?;
     private var _length:Double?;
-    private var _isChanged:Bool = false;
+    private var _isChanged:Bool;
     //"!" after the type means that we don't want to use Swift's nil protection for this variable so we have to do all validations ourselves
     //"?" after the type means that we allow this variable to be nil, meaning that it is an "optional"
+    
+    init(p1:Point?, p2:Point?){
+        self._p1 = p1;
+        self._p2 = p2;
+        _isChanged = false;
+    }
+    
+    convenience init(s:Segment){
+        self.init(p1: s.p1, p2: s.p2);
+    }
+    
+    convenience init(){
+        self.init(p1: nil, p2: nil);
+    }
     
     var p1:Point?{
         get{

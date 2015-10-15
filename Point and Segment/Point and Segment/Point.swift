@@ -12,6 +12,19 @@ class Point{
     private var _x:Double = 0;
     private var _y:Double = 0;
     
+    init(x:Double, y:Double){
+        self._x = x;
+        self.y = y;
+    }
+    
+    convenience init(p:Point){
+        self.init(x: p.x, y: p.y);
+    }
+    
+    convenience init(){
+        self.init(x: 0, y: 0);
+    }
+    
     var x:Double{
         get{
             return _x;
