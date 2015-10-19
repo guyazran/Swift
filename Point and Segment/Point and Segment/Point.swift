@@ -146,4 +146,9 @@ class Point{
         return angleWith(Point());
     }
     
+    //A deinitializer is a function that is called when the object is destroyed, meaning that the "garbage collector" has removed the object.
+    deinit{
+        print("in deinit \(description())");
+    }
+    
 }

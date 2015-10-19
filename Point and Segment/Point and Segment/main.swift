@@ -108,3 +108,9 @@ print(s.length);
 print(s.getYIntercepct());
 
 print(s.getIntersectionWith(s2)!.description());
+
+//here we create a pointer that refers to a new Point. then we make the pointer refer to "nil". when this happens, the Point is deinitialized and the "deinit" is called.
+var p10:Point? = Point(x: 3, y: 4);
+p10 = nil;
+//deinit function will print before "done" is printed
+print("done");
