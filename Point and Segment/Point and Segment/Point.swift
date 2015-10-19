@@ -17,8 +17,12 @@ class Point{
         self.y = y;
     }
     
-    convenience init(p:Point){
-        self.init(x: p.x, y: p.y);
+    convenience init(p:Point?){
+        if let thePoint = p{
+            self.init(x: thePoint.x, y: thePoint.y);
+        } else{
+            self.init();
+        }
     }
     
     convenience init(){

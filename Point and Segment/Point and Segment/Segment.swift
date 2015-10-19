@@ -17,8 +17,8 @@ class Segment {
     //"?" after the type means that we allow this variable to be nil, meaning that it is an "optional"
     
     init(p1:Point?, p2:Point?){
-        self._p1 = p1;
-        self._p2 = p2;
+        self._p1 = Point(p: p1);
+        self._p2 = Point(p: p2);
         _isChanged = false;
     }
     
