@@ -54,3 +54,25 @@ class aSubClass: aSuperClass, PrinterProtocol{ //when a sub class inherits from 
         print("aSubClass printThat")
     }
 }
+
+class aThirdClass: PrinterProtocol3 {
+    func printStuff(){
+        print("aThirdClass printStuff");
+    }
+    func printThings(){
+        print("aThirdClass printThings");
+    }
+}
+
+var a = aThirdClass();
+var someObject = SomeClass();
+SomeObject.delegate = a;
+//SomeObject.delegate = aThirdClass();
+someObject.someEvent();
+
+
+
+
+
+
+
