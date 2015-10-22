@@ -32,3 +32,13 @@ func calcRectangleArea(width width: Int, height: Int) -> Int{
 }
 
 calcRectangleArea(width: 3, height: 4); //calc rectangle area - width: 3, height: 4
+
+
+//default parameter values
+//you can define a default value for a parameter in a function. this allows you to only define the other parameters (alternative to overloads)
+func multiply2(x: Int, by y: Int = 2) -> Int{ //y's defalut value is 2
+    return x*y;
+}
+
+multiply2(3, by: 4); //this will return 12 as if y does not have a default value;
+multiply2(3); //this will return 6 because 3 will be multiplied by the defalut value of y which is 2
