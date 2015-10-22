@@ -24,6 +24,7 @@ class Project{
         for task in listOfTasks{
             if !task.done{
                 isDone = false;
+                break;
             }
         }
         return isDone;
@@ -31,14 +32,20 @@ class Project{
     
     func projectComplete(){
         if areTasksDone(){
-            print("\(self.name) project is completed")
+            print("\(self.name) project is completed");
         }
     }
 }
 
 class Task{
     var name = "";
-    private var _done = false;
+    private var _done = false{
+        didSet{
+            if let theParent = parent{
+                theParent.projectComplete()
+            }
+        }
+    }
     weak var parent:Project?; //a weak variable does not count as a pointer to a project as far as the garbage collector is concerned, thus breaking the reference cycle
     
     var done:Bool{
@@ -54,9 +61,7 @@ class Task{
     func taskCompleted(){
         print("\(self.name) task is complete")
         _done = true;
-        if let theParent = parent{
-            theParent.projectComplete()
-        }
+        
     }
 }
 
