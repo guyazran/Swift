@@ -104,3 +104,42 @@ func sum(s:String, numbers:Int...) -> Int{
 }
 
 sum("in sum", numbers: 5, 7, 9, 13)
+
+
+//value and reference type parameters
+
+//value type parameters
+//primitive parameters and structs are copied to the function, therefor changing their value does not affect the original variable sent to the function.
+func stam (var x: Int){ //in order to change the parameter it must be defined as "var"
+    x++;
+}
+
+var x = 8;
+stam(x);
+print(x); //this will print 8 because x was copied to stam, but the original variable was not changed
+
+//reference type parameters
+//object parameters will pass their address in the RAM, therefor the original object will be changed if it is changed in the function
+class Dog {
+    var name:String;
+    init(name: String){
+        self.name = name;
+    }
+}
+
+var d = Dog(name: "snoopy");
+
+func handleDog(dog: Dog){ //the variable "dog" is the same as "d" outside the function. changing "dog" will change "d".
+    dog.name += " handled";
+}
+
+handleDog(d);
+print("dog's name is " + d.name); //will print "snoopy handled" because the original dog is altered in the function.
+
+//primitive parameters and structs can also be passed as a reference type
+//the use of "inout" before the parameter name will pass it as reference type
+func stam2(inout x: Int){
+    x++;
+}
+stam2(&x);
+print(x)// will print 9 because the original x was changed in the function.
