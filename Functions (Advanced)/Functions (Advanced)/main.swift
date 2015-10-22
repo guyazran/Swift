@@ -42,3 +42,65 @@ func multiply2(x: Int, by y: Int = 2) -> Int{ //y's defalut value is 2
 
 multiply2(3, by: 4); //this will return 12 as if y does not have a default value;
 multiply2(3); //this will return 6 because 3 will be multiplied by the defalut value of y which is 2
+
+
+//variadic parameter
+//a parameter that represents an array that is constructed of an undefined number of parameters defined when the function is called
+/*
+//if i want to sum different amounts of numbers, i need to write many overloads
+func sum(x: Int, y: Int) -> Int{
+    return x + y;
+}
+
+func sum(x: Int, y: Int, z: Int) -> Int{
+    return sum(x, y: y) + z;
+}
+
+//i can also use an array, but this is very cumbersome
+func sum(numbers: [Int]) -> Int{
+    var total = 0;
+    for num in numbers{
+        total += num;
+    }
+    return total;
+}
+
+var numbers = [Int]();
+numbers.append(3);
+numbers.append(12);
+numbers.append(-3);
+
+//both will return the same result, but the array was more cumbersome to initialize
+sum(numbers);
+sum(3, y: 12, z: -3);
+*/
+
+//here we use a variadic parameter
+func sum(numbers:Int...) -> Int{
+    var total = 0;
+    for num in numbers{
+        total += num;
+    }
+    return total;
+}
+
+sum(3, 12, -3); //here i can add as many integer parameters i want
+
+var numbers = [Int]();
+numbers.append(3);
+numbers.append(12);
+numbers.append(-3);
+
+//sum(numbers); //this does not work, but it should
+
+//if we want to add other parameters, the variadic parameter must be last. there can only be one variadic parameter per function
+func sum(s:String, numbers:Int...) -> Int{
+    var total = 0;
+    for num in numbers{
+        total += num;
+    }
+    print(s);
+    return total;
+}
+
+sum("in sum", numbers: 5, 7, 9, 13)
