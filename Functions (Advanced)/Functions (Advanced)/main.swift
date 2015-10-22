@@ -143,3 +143,77 @@ func stam2(inout x: Int){
 }
 stam2(&x);
 print(x)// will print 9 because the original x was changed in the function.
+
+
+//retuurn more than one result;
+func distance(x: Int, y: Int) -> Int{
+    /*
+    //here we initialize the variables before we know who is the large one. this can be avoided
+    var small = x;
+    var large = y;
+    if(x>y){
+        small = y;
+        large = x;
+    }
+    */
+    /*
+    //this performs the same check twice.
+    let small = min(x, y: y);
+    let large = max(x, y: y);
+    */
+    
+    let (small, large) = sortTwoNumbers(x, y: y)
+    
+    var result = 0;
+    while(small + result < large){
+        result++;
+    }
+    return result;
+}
+
+/*
+//using both functions performs the same check twice
+func max(x:Int, y:Int) -> Int{
+    if x > y{
+        return x;
+    }
+    return y;
+}
+
+func min(x:Int, y:Int) -> Int{
+    if x < y{
+        return x;
+    }
+    return y;
+}
+*/
+
+//correct method 1: using tuple
+//here wwe return both the large and the small in one function;
+func sortTwoNumbers(x: Int, y: Int) -> (Int, Int){
+    if x > y{
+        return(y,x);
+    } else{
+        return (x, y);
+    }
+}
+
+//correct method 2: using inout
+//here we change the original variables to deternime which is larger
+func sortTwoNumbers2(inout x: Int, inout y: Int){
+    if x > y{
+        let temp = x;
+        x = y;
+        y = temp;
+    }
+}
+
+func distance2(var x: Int, var y: Int) -> Int{
+    sortTwoNumbers2(&x, y: &y)
+    
+    var result = 0;
+    while(x + result < y){
+        result++;
+    }
+    return result;
+}
